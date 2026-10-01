@@ -1,0 +1,23 @@
+# Maven
+target/
+
+# Eclipse / Spring Tool Suite
+.classpath
+.project
+.settings/
+.factorypath
+.springBeans
+
+# IntelliJ IDEA (por si alguna vez se abre con IntelliJ)
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

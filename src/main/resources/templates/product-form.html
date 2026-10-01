@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Añadir Producto</title>
+</head>
+<body>
+	<form th:action="@{/products/save}" method="post">
+		<input type="hidden" name="id" th:value="${product != null ? product.id: ''}">
+		<p>Nombre del producto:</p>
+		<input type="text" name="name" th:value="${product != null ? product.nombre : ''}">
+		<p>Precio del producto:</p>
+		<input type="number" name="price" th:value="${product != null ? product.precio : ''}">
+		
+		<button type="submit">Guardar</button>
+	</form>
+</body>
+</html>
