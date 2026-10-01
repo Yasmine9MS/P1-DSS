@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+    <form th:action="@{/login}" method="post">
+        <h2>Login</h2>
+        <label for="nombre-usuario">Nombre de usuario:</label>
+        <input id="nombre-usuario" type="text" name="username">
+
+        <label for="contrasena">Contraseña:</label>
+        <input id="contrasena" type="password" name="password">
+
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+    
+</body>
+</html>
