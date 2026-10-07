@@ -2,13 +2,13 @@ package com.example.demo;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@RequiredArgsConstructor
 @Service
 public class ProductService {
 	
-	private final ProductRepo productRepo;
+	@Autowired
+	private ProductRepo productRepo;
 	
 
 	public List<Producto> getAllProducts(){

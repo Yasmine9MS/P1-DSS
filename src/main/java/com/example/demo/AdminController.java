@@ -5,15 +5,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 
 @Controller 
-@RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminController{
-    private final DatabaseExportService databaseExportService;
+    
+    @Autowired
+    private ProductService serviceProduct;
+    @Autowired
+    private DatabaseExportService databaseExportService;
+
+    @GetMapping
+    public String adminPage(Model modelo){
+        modelo.addAttribute("products", serviceProduct.getAllProducts());
+        return "admin";
+    }
     
 
     @GetMapping ("/export")

@@ -1,14 +1,15 @@
 package com.example.demo;
 
 import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor 
 public class DatabaseExportService {
-    private final ProductRepo productRepo;
+    
+    @Autowired
+    private ProductRepo productRepo;
 
     public byte[] exportDatabaseToSqlFile(){
         List<Producto> productos = productRepo.findAll();

@@ -2,10 +2,8 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
-import lombok.NoArgsConstructor;
 
 @Service
-@NoArgsConstructor
 public class CartService {
 	
 	private List<Producto> products = new ArrayList<>();
