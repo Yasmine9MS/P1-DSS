@@ -31,7 +31,7 @@ public class CartController {
 			serviceCart.addProductToCart(prod);
 		}
 		
-		return "redirect:/products";
+		return "redirect:/cart";
 		
 	}
 	

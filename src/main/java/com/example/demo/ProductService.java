@@ -29,4 +29,12 @@ public class ProductService {
 		productRepo.deleteById(id);
 	}
 
+	public List<Producto> searchProduct(String consulta){
+		return productRepo.findByNombreContainingIgnoreCase(consulta);
+	}
+
+	public List<Producto> findByPrecioBetween(double minimo, double maximo){
+		return productRepo.findByPrecioBetween(minimo, maximo);
+	}
+
 }

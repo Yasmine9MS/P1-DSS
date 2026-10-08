@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="container">
-		 <nav class="navbar navbar-light bg-light">
+		<nav class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="/">
                 <img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Inicio" width="30" height="30">
             </a>
@@ -15,6 +15,46 @@
         <div class="mb-4">
             <a href="/cart" class="btn btn-secondary">Ver Carrito</a>
         </div>
+
+    
+        <form th:action="@{/products/search}" method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="consulta" class="form-control"
+                    placeholder="Buscar producto">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+
+        <form th:action="@{/products/filter}" method="get" class="mb-4">
+            <div class="row">
+                <div class="col">
+                    <input type="number"
+                        name="minimo"
+                        class="form-control"
+                        placeholder="Precio mínimo"
+                        step="0.01"
+                        min="0">
+                </div>
+
+                <div class="col">
+                    <input type="number"
+                        name="maximo"
+                        class="form-control"
+                        placeholder="Precio máximo"
+                        step="0.01"
+                        min="0">
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                        Filtrar por precio
+                    </button>
+
+                    <a href="/products" class="btn btn-secondary">Borrar Filtros</a>
+                </div>
+            </div>
+        </form>
+
         <div class="row">
             <div th:each="product : ${products}" class="col-md-4">
                 <div class="card mb-4">

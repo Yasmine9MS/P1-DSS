@@ -12,9 +12,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration 
 @EnableWebSecurity 
@@ -26,7 +23,7 @@ public class SecurityConfig {
             http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/cart/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/products").permitAll()
+                .requestMatchers(HttpMethod.GET, "/products", "/products/search", "/products/filter").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .anyRequest().authenticated()

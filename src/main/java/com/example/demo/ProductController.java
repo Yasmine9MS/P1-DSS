@@ -64,4 +64,18 @@ public class ProductController {
 		return "redirect:/admin";
 	}
 
+	@GetMapping("/search")
+	public String searchProduct(@RequestParam String consulta, Model model){
+		model.addAttribute("products", serviceProduct.searchProduct(consulta));
+
+		return "products";
+	}
+
+	@GetMapping("/filter")
+	public String filterProducts(@RequestParam double minimo, @RequestParam double maximo, Model model){
+		model.addAttribute("products", serviceProduct.findByPrecioBetween(minimo, maximo));
+
+		return "products";
+	}
+
 }
