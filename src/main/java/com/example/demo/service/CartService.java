@@ -18,7 +18,15 @@ public class CartService {
 	
 	
 	public List<Producto> getAllCartItems(){
-		return serviceProduct.getAllProducts();
+		List<Producto> productos = new ArrayList<>();
+		for(Long id : products) {
+			Producto prod = serviceProduct.getProductById(id);
+			if(prod != null) {
+				productos.add(prod);
+			}
+		}
+
+		return productos;
 	}
 	
 	public void addProductToCart(Long id) {

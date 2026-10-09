@@ -52,7 +52,7 @@ El proyecto sigue una organización por capas para separar las responsabilidades
 * **service:** lógica de negocio y operaciones relacionadas con los productos y el carrito.
 * **controller:** gestión de las peticiones HTTP y comunicación entre la interfaz y la lógica de negocio.
 * **templates:** plantillas HTML procesadas por Thymeleaf.
-* **static:** recursos estáticos, si existen, como CSS, JavaScript e imágenes.
+* **static:** recursos estáticos
 
 La clase principal de Spring Boot se encarga de iniciar la aplicación.
 
