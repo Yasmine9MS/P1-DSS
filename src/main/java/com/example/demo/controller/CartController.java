@@ -22,6 +22,7 @@ public class CartController {
 	public String showCartContents(Model model){
 		
 		model.addAttribute("cart", serviceCart.getAllCartItems());
+		model.addAttribute("total", serviceCart.totalCart());
 		return "cart";
 	}
 	

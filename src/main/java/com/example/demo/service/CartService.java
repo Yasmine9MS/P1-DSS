@@ -29,6 +29,7 @@ public class CartService {
 		return productos;
 	}
 	
+	//Método para agregar un producot al carrito de compra mientras que exista
 	public void addProductToCart(Long id) {
 
 		if(serviceProduct.getProductById(id) != null){
@@ -37,8 +38,23 @@ public class CartService {
 
 	}
 	
+	//Método para borrar un producto del carrito de comrpas
 	public void deleteProductFromCart(Long id) {
 		products.remove(id);
 	}
 
+	//Método para mostrar el total del carrito 
+	public double totalCart() {
+    double total = 0;
+
+    for (Long id : products) {
+        Producto prod = serviceProduct.getProductById(id);
+
+        if (prod != null) {
+            total += prod.getPrecio();
+        }
+    }
+
+    return total;
+}
 }

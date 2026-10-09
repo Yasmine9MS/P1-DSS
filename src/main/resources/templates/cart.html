@@ -27,6 +27,16 @@
                 </li>
             </ul>
         </div>
+
+
+        <div class="text-end mt-4">
+            <h4>
+                Total:
+                <span th:text="${#numbers.formatDecimal(total, 1, 2)} + ' €'">
+                    0,00 €
+                </span>
+            </h4>
+        </div>
     </div>
 </body>
 </html>
