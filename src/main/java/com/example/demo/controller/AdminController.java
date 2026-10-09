@@ -1,7 +1,11 @@
-package com.example.demo;
+package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.service.DatabaseExportService;
+import com.example.demo.service.ProductService;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RequestMapping("/admin")
 public class AdminController{
     
+    //Inyección de dependencias para los servicios necesarios
     @Autowired
     private ProductService serviceProduct;
     @Autowired
     private DatabaseExportService databaseExportService;
 
+    //Obtiene todos los productos y los agrega al modelo para enviarlos a la vista
     @GetMapping
     public String adminPage(Model modelo){
         modelo.addAttribute("products", serviceProduct.getAllProducts());
@@ -26,6 +32,7 @@ public class AdminController{
     }
     
 
+    //endpoint para exportar los datos de la base de datos
     @GetMapping ("/export")
     public ResponseEntity<byte[]> exportDatabaseToSqlFile(){
         byte[] ficheroSql = databaseExportService.exportDatabaseToSqlFile();

@@ -1,16 +1,23 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
+
+import com.example.demo.model.Producto;
+import com.example.demo.repository.ProductRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+//Servicio de exportación de la base de datos
 @Service
 public class DatabaseExportService {
     
+    //Inyección de dependencias para el repositorio de productos
     @Autowired
     private ProductRepo productRepo;
 
+    //Método para exportar los datos de la base de datos a un fichero SQL
     public byte[] exportDatabaseToSqlFile(){
         List<Producto> productos = productRepo.findAll();
 

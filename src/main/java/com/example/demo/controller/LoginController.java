@@ -1,8 +1,9 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+//Controlador para manejar la página de autenticación
 @Controller 
 public class LoginController {
 
