@@ -89,10 +89,6 @@ http://localhost:8080
 
 La aplicación utiliza H2 como sistema de gestión de base de datos y Spring Data JPA para acceder a los datos.
 
-La base de datos se configura mediante los archivos de configuración de Spring Boot. Si se utiliza persistencia en archivo, deben conservarse los archivos de base de datos necesarios y comprobarse que la ruta configurada sea válida en el equipo donde se ejecute el proyecto.
-
-Si la aplicación requiere datos iniciales, estos deberán estar disponibles mediante la base de datos entregada o el mecanismo de inicialización configurado.
-
 ## 8. Gestión de dependencias
 
 Las dependencias del proyecto están declaradas en `pom.xml`. Maven se encarga de resolverlas y descargarlas cuando sea necesario.
