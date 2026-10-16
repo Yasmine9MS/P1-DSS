@@ -39,7 +39,7 @@ public class AdminController{
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION,
-                    "attachment; filename=\"productos.sql\"")
+                    "attachment; filename=\"products.sql\"")
                     .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .body(ficheroSql);
 
