@@ -23,16 +23,18 @@ public class SecurityConfig {
         HttpSecurity http) throws Exception {
             http //Define que usuarios pueden acceder a cada ruta
             .authorizeHttpRequests(auth -> auth
-                //Permite el acceso público a la página de inicio, al carrito y a las rutas de productos
-                .requestMatchers("/", "/cart/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/products", "/products/search", "/products/filter").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers(PathRequest.toH2Console()).permitAll()
-                .anyRequest().authenticated()
-            ) //Configura la página de inicio de sesión, la redirección después del inicio de sesión y la configuración de cierre de sesión
+            	.requestMatchers("/", "/index", "/index.html", "/login", "/error",
+            			"/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+            	.requestMatchers("/h2-console", "/h2-console/**").permitAll()
+            	.requestMatchers(HttpMethod.GET, "/products", "/products/search", "/products/filter").permitAll()
+            	.requestMatchers("/admin", "/admin/**", "/products/add",
+            			"/products/edit/**", "/products/save", "/products/delete/**").hasRole("ADMIN")
+            	.requestMatchers("/cart", "/cart/**").permitAll()
+            	.anyRequest().authenticated()
+            ) 
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/admin", true)
+                .defaultSuccessUrl("/products", false)
                 .permitAll()
             ) //configura el cierre de sesión, definiendo la URL de cierre de sesión y la URL a la que se redirige después del cierre de sesión
             .logout(logout -> logout

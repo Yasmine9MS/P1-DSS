@@ -1,5 +1,6 @@
 package com.example.demo.service;
 import java.util.ArrayList;
+import org.springframework.web.context.annotation.SessionScope;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //Servicio de Carrito de compras
 
 @Service
+@SessionScope
 public class CartService {
 	
 	private List<Long> products = new ArrayList<>();
