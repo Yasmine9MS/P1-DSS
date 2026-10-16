@@ -1,6 +1,5 @@
 # P1-DSS
 Aplicación CRUD básica de Carrito de Compra
-# P1_DSS — Gestión de productos y carrito de compra
 
 ## 1. Descripción del proyecto
 
@@ -10,51 +9,50 @@ La aplicación permite administrar los productos disponibles y realizar operacio
 
 ## 2. Tecnologías utilizadas
 
-* **Java 17:** lenguaje de programación.
-* **Spring Boot:** configuración y ejecución de la aplicación.
-* **Spring MVC:** gestión de las peticiones HTTP y navegación entre páginas.
-* **Spring Data JPA:** acceso y persistencia de los datos.
-* **Hibernate:** implementación de la persistencia mediante JPA.
-* **Thymeleaf:** generación de las páginas HTML dinámicas.
-* **Spring Security:** gestión de la seguridad de la aplicación.
-* **H2 Database:** base de datos utilizada para almacenar los productos.
+* **Java 17:** versión configurada para el proyecto.
+* **Spring Boot 4.1.1:** configuración y ejecución de la aplicación.
+* **Spring MVC:** gestión de peticiones HTTP y controladores.
+* **Thymeleaf:** generación de vistas HTML.
+* **Spring Data JPA / Hibernate:** persistencia de datos.
+* **H2:** base de datos persistente en archivo y consola de administración.
+* **Spring Security:** autenticación, autorización y protección CSRF.
+* **Lombok:** reducción de código repetitivo.
 * **Maven:** gestión de dependencias y construcción del proyecto.
+* **Spring Tools for Eclipse 5.4.0:** entorno de desarrollo (Windows 11).
 
 ## 3. Funcionalidades principales
 
 ### Gestión de productos
-
 La aplicación permite:
 
-* Consultar el listado de productos.
-* Añadir nuevos productos.
-* Editar productos existentes.
-* Eliminar productos.
+* Consultar el listado de productos (acceso público).
+* Añadir, editar y eliminar productos (solo rol `ADMIN`).
 * Buscar productos por nombre.
-* Filtrar productos por precio.
+* Filtrar productos por rango de precio.
 
 Cada producto dispone de un identificador, un nombre y un precio.
 
 ### Carrito de compra
-
-La aplicación incorpora un carrito que permite gestionar los productos seleccionados por el usuario.
+Los usuarios pueden añadir y eliminar productos del carrito, y se muestra el precio total. El carrito guarda los identificadores de los productos, de modo que siempre refleja los datos actuales del catálogo. Cada usuario dispone de su propio carrito gracias al ámbito de sesión HTTP.
 
 ### Seguridad
+Spring Security gestiona la autenticación y la autorización mediante los roles `ADMIN` y `USER`. El catálogo y el carrito son públicos; la gestión de productos y el panel de administración (`/admin/**`) están reservados al rol `ADMIN`. La protección CSRF está activa en las peticiones POST.
 
-La aplicación integra Spring Security para proteger el acceso a las funcionalidades configuradas.
+### Exportación SQL
+El administrador puede descargar el catálogo como script SQL desde `/admin/export`. El servicio `DatabaseExportService` genera una sentencia `INSERT` por producto y el archivo se descarga como `products.sql`.
 
 ## 4. Estructura del proyecto
+El proyecto sigue una organización por capas dentro del paquete `com.example.demo`:
 
-El proyecto sigue una organización por capas para separar las responsabilidades de la aplicación:
+* `config`: configuración de seguridad (`SecurityConfig`).
+* `model`: entidades del dominio, como `Producto`.
+* `repository`: acceso a datos con Spring Data JPA (`ProductRepo`).
+* `service`: lógica de negocio de productos, carrito y exportación.
+* `controller`: peticiones HTTP (productos, carrito, administración y login).
+* `templates`: plantillas HTML procesadas por Thymeleaf.
+* `static`: recursos estáticos.
 
-* **model:** clases que representan las entidades del dominio, como `Producto`.
-* **repository:** interfaces para el acceso a los datos mediante Spring Data JPA.
-* **service:** lógica de negocio y operaciones relacionadas con los productos y el carrito.
-* **controller:** gestión de las peticiones HTTP y comunicación entre la interfaz y la lógica de negocio.
-* **templates:** plantillas HTML procesadas por Thymeleaf.
-* **static:** recursos estáticos
-
-La clase principal de Spring Boot se encarga de iniciar la aplicación.
+La clase principal `P1DssApplication` inicia la aplicación.
 
 ## 5. Requisitos previos
 
@@ -85,9 +83,25 @@ La aplicación utiliza el puerto configurado en Spring Boot. Si se mantiene la c
 
 http://localhost:8080
 
+### Acceso a la aplicación
+
+* Catálogo: `http://localhost:8080/products`
+* Usuarios de demostración:
+  * `admin` / `admin` (rol `ADMIN`)
+  * `user` / `user` (rol `USER`)
+
 ## 7. Base de datos
 
-La aplicación utiliza H2 como sistema de gestión de base de datos y Spring Data JPA para acceder a los datos.
+La aplicación utiliza H2 en modo archivo y Spring Data JPA, por lo que los datos se conservan al reiniciar la aplicación. Los archivos de la base de datos se guardan en la carpeta `data` del proyecto (`data/productosDB`).
+
+La consola de H2 está disponible en `http://localhost:8080/h2-console` (solo para desarrollo), con estos datos de conexión:
+
+| Campo | Valor |
+|---|---|
+| JDBC URL | `jdbc:h2:file:./data/productosDB` |
+| Usuario | `sa` |
+| Contraseña | `root` |
+| Driver | `org.h2.Driver` |
 
 ## 8. Gestión de dependencias
 
@@ -99,8 +113,4 @@ Para actualizar las dependencias desde STS:
 
 ## 9. Autoría
 
-Proyecto desarrollado como parte de la asignatura correspondiente al proyecto P1_DSS.
-
-## 10. Enlace al Repositorio en Github
-
-https://github.com/Yasmine9MS/P1-DSS.git
+Proyecto desarrollado por Yasmine Mohamed Sleczek para la asignatura Desarrollo de Sistemas Software basados en Componentes y Servicios.
